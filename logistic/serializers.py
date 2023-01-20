@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework import serializers
 
 from logistic.models import Product, StockProduct, Stock
@@ -38,7 +39,9 @@ class StockSerializer(serializers.ModelSerializer):
 
         return stock
 
+
     def update(self, instance, validated_data):
+
         positions = validated_data.pop('positions')
 
         stock = super().update(instance, validated_data)
@@ -52,4 +55,4 @@ class StockSerializer(serializers.ModelSerializer):
 
         return stock
 
-        return stock
+
